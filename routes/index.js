@@ -7,8 +7,4 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-// io.on('connection', function(socket){
-//   console.log('a user connected');
-// });
-
 module.exports = router;
