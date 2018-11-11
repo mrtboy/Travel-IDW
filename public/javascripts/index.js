@@ -1,22 +1,11 @@
-// Makge connection
-var socket = io.connect("http://localhost:3000/");
 
 $("form").submit(function (event) {
     event.preventDefault();
     var email = $("#inputEmail").val();
     var password = $("#inputPassword").val();
-    
-    socket.emit('login',{
-        email: email,
-        password: password
-    });
-   
-});
-
-socket.on('login', function(data){
-    if(data){
+    if (email === 'reza@gmail.com' && password === '123456') {
         window.location.href = "/packages.html";
-    } else {
+      } else {
         alert("wrong email or password");
-    }
-})
+      }
+});
