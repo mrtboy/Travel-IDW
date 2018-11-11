@@ -1,8 +1,18 @@
 // Makge connection
 var socket = io.connect("http://localhost:3000/");
 
+$("#remove").click(function (event) {
+    event.preventDefault();
+    var _id = $("#inputId").val();
+    if (!isNaN(_id)) {
+        socket.emit('deletePacakge', {
+            id: _id
+        });
+        $("#inputId").val("");
+    }
+});
 
-$("form").submit(function (event) {
+$("#addNew").click(function (event) {
     event.preventDefault();
     var _country = $("#inputCountry").val();
     var _city = $("#inputCity").val();

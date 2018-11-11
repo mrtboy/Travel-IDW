@@ -105,20 +105,36 @@ io.on('connection', function (socket) {
         add(data);
         mySqlConnection.query("SELECT * FROM a_package", function (err, result, fields) {
           if (err) throw err;
-          io.sockets.emit('getPackage',result);
+          io.sockets.emit('getPackage', result);
         })
       } else {
         socket.emit('submitPackage', "No DATA");
       }
-    } catch(e){
+    } catch (e) {
       socket.emit('submitPackage', "Something goes wrong");
     }
   });
 
+  socket.on('deletePacakge', function (data) {
+    try{
+      var sql = `DELETE FROM a_package WHERE id = ${data.id}`;
+      console.log(sql);
+      mySqlConnection.query(sql, function (err, result) {
+        if (err) throw err;
+        console.log("1 record deleted");
+      });
+      mySqlConnection.query("SELECT * FROM a_package", function (err, result, fields) {
+        if (err) throw err;
+        io.sockets.emit('getPackage', result);
+      })
+    } catch(e){
+      io.sockets.emit('deletePacakge', e);
+    }
+    
+  });
+
   mySqlConnection.query("SELECT * FROM a_package", function (err, result, fields) {
     if (err) throw err;
-    io.sockets.emit('getPackage',result);
+    io.sockets.emit('getPackage', result);
   })
 })
-
-
