@@ -33,16 +33,4 @@ function get(){
 }
 
 
-// const insertQuery = myqlConnection.connect(function (err) {
-//   if (err) throw err;
-//   console.log("Connected!");
-//   var sql = "INSERT INTO a_package (country, city) VALUES ('Company Inc', 'Highway 37')";
-//   myqlConnection.query(sql, function (err, result) {
-//     if (err) throw err;
-//     console.log("1 record inserted");
-//   });
-// });
-
-
-
-module.exports = add;
+module.exports = {add, get};

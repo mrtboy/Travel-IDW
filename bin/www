@@ -8,7 +8,7 @@ var app = require('../app');
 var debug = require('debug')('travelagency:server');
 var http = require('http');
 var socket = require('socket.io');
-var repo = require('../db/db.js');
+var {add,get} = require('../db/db.js');
 
 /**
  * Get port from environment and store in Express.
@@ -108,7 +108,7 @@ io.on('connection', function (socket) {
   socket.on('submitPackage', function (data) {
     try {
       if (data !== undefined) {
-        repo(data);
+        add(data);
       } else {
         socket.emit('submitPackage', data);
       }
